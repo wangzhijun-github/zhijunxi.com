@@ -14,7 +14,7 @@
 <meta property="og:site_name" content="风缘">
 <meta property="og:description" content="JS是单线程执行: JS的执行机制是 首先判断JS是同步还是异步,同步就进入主进程,异步就进入event table 异步任务在event table中注册函数,当满足触发条件后,被推入event queue 同步任务进入主线程后一直执行,直到主线程空闲时,才会去event queue中查看是否有可执行的异步任务,如果有就推入主进程中  在异步队列中并不是先后顺序执行 执行一个宏任务,过程中如果遇">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-12-13T10:08:19.000Z">
+<meta property="og:updated_time" content="2018-12-13T10:30:04.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="风缘">
 <meta name="twitter:description" content="JS是单线程执行: JS的执行机制是 首先判断JS是同步还是异步,同步就进入主进程,异步就进入event table 异步任务在event table中注册函数,当满足触发条件后,被推入event queue 同步任务进入主线程后一直执行,直到主线程空闲时,才会去event queue中查看是否有可执行的异步任务,如果有就推入主进程中  在异步队列中并不是先后顺序执行 执行一个宏任务,过程中如果遇">
@@ -71,7 +71,7 @@
         <section id="main"><article id="page-" class="article article-type-page" itemscope="" itemprop="blogPost">
   <div class="article-meta">
     <a href="/zhijunxi.com/jsstream/index.html" class="article-date">
-  <time datetime="2018-12-13T10:08:19.000Z" itemprop="datePublished">2018-12-13</time>
+  <time datetime="2018-12-13T10:30:04.000Z" itemprop="datePublished">2018-12-13</time>
 </a>
     
   </div>
@@ -94,17 +94,21 @@
 <li>micro-task(微任务)：Promise(then)，process.nextTick</li>
 </ul>
 <h3 id="async-awiat"><a href="#async-awiat" class="headerlink" title="async awiat"></a>async awiat</h3><ul>
-<li>如果异步函数中<strong>没有await</strong>中，就跟同步函数一样，立即执行并返回 <strong>promise</strong> 函数。<pre><code>-  then后面就是异步操作了
-</code></pre></li>
-<li><p>如果<strong>有await</strong>，就会先执行await 后面表达式的内容，等到返回结果后，阻塞await下面的语句，添加到事件队列中，执行异步函数外的语句。</p>
-<pre><code>- **实践的结论是，await的执行从右向左的。先执行await后面的表达式，然后再阻塞下有一个语句**。
-- 如果不是 promise , await会阻塞后面的代码，先执行async外面的同步代码，同步代码执行完，再回到async内部，把这个非promise的东西，作为 await表达式的结果
-</code></pre><ul>
-<li>如果它等到的是一个 promise 对象，await 也会暂停async后面的代码，先执行async外面的同步代码，再回到promise执行then操作，因为await是要promise执行后的结果，即 Promise 对象 fulfilled，然后把 resolve 的参数作为 await 表达式的运算结果，这里多了一步解析操作，<strong>那就是then或者catch,即重新加入到当前的微任务队列中</strong>。</li>
+<li>如果异步函数中<strong>没有await</strong>中，就跟同步函数一样，立即执行并返回 <strong>promise</strong> 函数。<ul>
+<li>then后面就是异步操作了</li>
 </ul>
-<blockquote>
+</li>
+<li><p>如果<strong>有await</strong>，就会先执行await 后面表达式的内容，等到返回结果后，阻塞await下面的语句，添加到事件队列中，执行异步函数外的语句。</p>
+<ul>
+<li><strong>实践的结论是，await的执行从右向左的。先执行await后面的表达式，然后再阻塞下有一个语句</strong>。</li>
+<li>如果不是 promise , await会阻塞后面的代码，先执行async外面的同步代码，同步代码执行完，再回到async内部，把这个非promise的东西，作为 await表达式的结果</li>
+</ul>
+<ul>
+<li>如果它等到的是一个 promise 对象，await 也会暂停async后面的代码，先执行async外面的同步代码，再回到promise执行then操作，因为await是要promise执行后的结果，即 Promise 对象 fulfilled，然后把 resolve 的参数作为 await 表达式的运算结果，这里多了一步解析操作，<strong>那就是then或者catch,即重新加入到当前的微任务队列中</strong>。<blockquote>
 <p>1.它先计算出await右侧的结果，2.然后看到await后，中断async函数</p>
 </blockquote>
+</li>
+</ul>
 </li>
 </ul>
 <h3 id="tips"><a href="#tips" class="headerlink" title="tips"></a>tips</h3><ul>
@@ -115,7 +119,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://wangzhijun-github.github.io/jsstream/index.html" data-id="cjpmg1cpf00000k3c71x17n6b" class="article-share-link">Share</a>
+      <a data-url="http://wangzhijun-github.github.io/jsstream/index.html" data-id="cjpmgsodq0003353cm4w4t0ve" class="article-share-link">Share</a>
       
       
     </footer>
